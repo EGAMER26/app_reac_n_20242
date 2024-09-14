@@ -7,10 +7,10 @@ import { Text, View, Image, Button, Alert } from "react-native";
 
 interface PropProd{
     produto:Produto,
-
+    aoExcluir?:Function
 }
 
-const ItemProduto:React.FC<PropProd> = ( {produto})=> {
+const ItemProduto:React.FC<PropProd> = ( {produto, aoExcluir})=> {
     
     console.log(produto)
     
@@ -19,6 +19,7 @@ const ItemProduto:React.FC<PropProd> = ( {produto})=> {
         let api = 'https://api-docker-2t8m.onrender.com/api/produtos';
         axios.delete(`${api}/${id}`) 
         .then((resp)=>{
+            aoExcluir?.call(null);
             Alert.alert('Produto excluido com sucesso');
             alert('Produto excluido com sucesso');
         })
@@ -30,8 +31,9 @@ const ItemProduto:React.FC<PropProd> = ( {produto})=> {
             <Text style={Style.cardText} >{produto.preco}</Text>
             <Image source={{uri:produto.foto} } 
              style={Style.image}   />
+            <Text style={Style.cardText} >{produto.descricao}</Text>
             <Button title="Excluir" 
-            onPress={()=>{Excluir(produto.id)}}/>  
+            onPress={()=>{Excluir(produto.id)}}/>
             
         </View>
     )

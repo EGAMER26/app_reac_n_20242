@@ -39,7 +39,9 @@ const CadastroProduto = ()=>{
             preco: preco,
         } as Produto;
         let api = 'https://api-docker-2t8m.onrender.com/api/produtos';
-        axios.post(api,produto) 
+        axios.post(api,produto).then((resp)=>{
+            setNome('');
+        })
     }
 }
 

@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import CadastroProduto from "./Componentes/Adaptadores/CadastroProduto";
 
 export default function RootLayout() {
   return (
